@@ -15,4 +15,24 @@ class UsersController < ApplicationController
     end
   end
   
+  get '/signup' do
+    erb :'users/signup'
+  end
+  
+  post '/users' do
+    
+    if params[:name] != "" && params[:email] != "" && params[:password] != ""
+      @user = User.create(params)
+      redirect "users/#{@user.id}"
+    else
+      
+    end
+    
+  end
+  
+  get '/users/:id' do
+    @user = User.find_by(id: params[:id])
+    erb :"/users/show"
+  end
+  
 end
