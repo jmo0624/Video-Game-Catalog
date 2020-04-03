@@ -8,4 +8,5 @@ use Rack::MethodOverride
 
 #mount other controller with use
 use UsersController
+use GamesController
 run ApplicationController
