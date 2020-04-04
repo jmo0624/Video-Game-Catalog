@@ -2,30 +2,39 @@ class GamesController < ApplicationController
   
   #render form to create new entry.....'games/new'
   get '/games/new' do
+    redirect_if_not_logged_in
     erb :'games/new'
   end
+ 
   #post games to create new game entry
   post '/games' do
-    
-    if !logged_in?
-      redirect "/"
-    end
+    redirect_if_not_logged_in
     
     if params[:title] != ""
       #create new entry
       raise.params
-      @game = Game.create(title: params[:title], user_id: current_user.id)
+      @game = Game.create(title: params[:title], user_id: current_user.id, genre: params[:genre], system: params[:system], dev_company: params[:dev_company], release_year: params[:release_year])
+      #flash message?
       redirect "/games/#{@game.id}"
     else
+      flash[:errors] = "Invalid entry, please try again."
       redirect "games/new"
     end
       
   end
   
   get '/games/:id' do
-    @game = Game.find(params[:id])
+    set_game_entry
     erb :'/games/show'
   end
   #index for all games
+  
+  get '/games' do
+    
+    @games = Game.all
+    erb :'journal_entries/index'
+    
+  end
+  
   
 end
