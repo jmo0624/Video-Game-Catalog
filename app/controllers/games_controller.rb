@@ -7,12 +7,13 @@ class GamesController < ApplicationController
   #post games to create new game entry
   post '/games' do
     
-    #if !logged_in?
-     # redirect "/"
-   # end
+    if !logged_in?
+      redirect "/"
+    end
     
     if params[:title] != ""
       #create new entry
+      raise.params
       @game = Game.create(title: params[:title], user_id: current_user.id)
       redirect "/games/#{@game.id}"
     else
