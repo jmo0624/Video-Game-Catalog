@@ -1,0 +1,10 @@
+<h1>All Games</h1>
+
+<% @games.each do |game| %>
+  <ol>
+    
+    <li><h3><a href="/games/<%= game.id %>">Title: <%= game.title %></a></h3></li>
+    <li><h4>Genre: <%= game.genre %></h4></li>
+  </ol>
+  <br><br>
+<% end %>

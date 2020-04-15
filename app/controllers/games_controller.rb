@@ -32,7 +32,7 @@ class GamesController < ApplicationController
   get '/games' do
     
     @games = Game.all
-    erb :'journal_entries/index'
+    erb :'games/index'
     
   end
   
