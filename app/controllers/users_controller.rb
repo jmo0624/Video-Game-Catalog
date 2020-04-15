@@ -6,15 +6,20 @@ class UsersController < ApplicationController
   end
   
   post '/login' do
-    @user = User.find_by(email: params[:email])   #find user
     
-    if @user && @user.authenticate(params[:password])     #authenticate user
-      session[:user_id] = @user_id
-      #flash message?
-      redirect "users/#{@user.id}"
+    @user = User.find_by(email: params[:email])   #find the user
+
+    if @user && @user.authenticate(params[:password])   #authenticate
+     
+      session[:user_id] = @user.id      # actually logging the user in and creating session
+     
+
+      flash[:message] = "Welcome, #{@user.name}!"
+      redirect "users/#{@user.id}"  #redirect to user show page
     else
-      flash[:errors] = "Email or password were invalid. Please try again or create an account."
-      erb :'users/login'
+      flash[:errors] = "Your credentials were invalid.  Please sign up or try again."
+     
+      redirect '/login'   #redirect to login page
     end
   end
   
