@@ -12,7 +12,7 @@ class GamesController < ApplicationController
     
     if params[:title] != ""
       #create new entry
-      raise.params
+     
       @game = Game.create(title: params[:title], user_id: current_user.id, genre: params[:genre], system: params[:system], dev_company: params[:dev_company], release_year: params[:release_year])
       #flash message?
       redirect "/games/#{@game.id}"
@@ -35,6 +35,13 @@ class GamesController < ApplicationController
     erb :'journal_entries/index'
     
   end
+  
+  def set_game_entry
+    
+    @game = Game.find(params[:id])
+    
+  end
+  
   
   
 end
