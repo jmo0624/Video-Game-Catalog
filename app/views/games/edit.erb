@@ -1,0 +1,16 @@
+<h1>Edit your Game</h1>
+
+<form class="" action="/games/<%= @game.id %>" method="post">
+	<input type="hidden" name="_method" value="patch">
+	<label for="title">Title: </label>
+	<input type="text" name="title" value="<%=game.title%>">
+	<label for="genre">Genre: </label>
+	<input type="text" name="genre" value="<%=game.genre%>">
+	<label for="system">System: </label>
+	<input type="text" name="system" value="<%=game.system%>">
+	<label for="dev_company">Developer: </label>
+	<input type="text" name="dev_company" value="<%=game.dev_company%>">
+	<label for="release_year">Release Year: </label>
+	<input type="text" name="release_year" value="<%=release_year%>">
+	<input type="submit" name="" value="Edit Game">
+</form>
