@@ -36,6 +36,43 @@ class GamesController < ApplicationController
     
   end
   
+  get '/games/:id/edit' do
+
+  	redirect_if_not_logged_in
+  	set_game_entry
+  	if authorized_to_edit?(@game)
+  		erb :'/games/edit'
+  	else
+  		redirect "users/#{current_user.id}"
+  	end
+  	
+  end
+
+  patch '/games/:id' do            #edit game
+
+  	redirect_if_not_logged_in
+  	set_game_entry
+
+  	if @game.user == current_user && params[:title] != ""
+  		@game.update(title: params[:title])
+  		redirect "/games/#{@game.id}"
+  	else
+  		redirect "users/#{current_user.id}"
+  	end
+
+  end
+
+  delete '/games/:id' do    #delete game
+  	set_game_entry
+  	if authorized_to_edit?(@game)
+  		@game.destroy
+  		flash[:message] = "Successfully removed that game from the catalog."
+  		redirect '/games'
+  	else
+  		redirect '/games'
+  	end
+  end
+  
   def set_game_entry
     
     @game = Game.find(params[:id])
