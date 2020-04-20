@@ -2,7 +2,7 @@
 <p>Genre: <%= @game.genre %></p>
 <p>System: <%= @game.system %></p>
 <p>Developer: <%= @game.dev_company %></p>
-<p>Release Year: <% @game.release_year %></p>
+<p>Release Year: <%= @game.release_year %></p>
 
 <% if authorized_to_edit?(@game) %>
   <a href="/games/<%=@game.id %>/edit">Edit Game</a>
