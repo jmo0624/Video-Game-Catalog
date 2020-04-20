@@ -54,7 +54,7 @@ class GamesController < ApplicationController
   	set_game_entry
 
   	if @game.user == current_user && params[:title] != ""
-  		@game.update(title: params[:title])
+  		@game.update(title: params[:title], genre: params[:genre], system: params[:system], dev_company: params[:dev_company], release_year: params[:release_year])
   		redirect "/games/#{@game.id}"
   	else
   		redirect "users/#{current_user.id}"
