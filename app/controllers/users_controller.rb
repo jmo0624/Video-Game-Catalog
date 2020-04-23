@@ -37,7 +37,7 @@ class UsersController < ApplicationController
       #flash message?
       redirect "users/#{@user.id}"
     else
-      flash[:errors] = "Could not create account: #{@user.errors.full_message.to_sentence}"
+     
       redirect "users/signup"
     end
     

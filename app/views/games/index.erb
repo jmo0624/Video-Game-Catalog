@@ -1,5 +1,6 @@
 <h1>All Games</h1>
 
+<section id="game_index">
 <% @games.each do |game| %>
     
     <h3><%= game.id %>) <a href="/games/<%= game.id %>">Title: <%= game.title %></a></h3></li>
@@ -8,3 +9,4 @@
  
   <br><br>
 <% end %>
+</section>

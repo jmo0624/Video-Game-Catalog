@@ -42,3 +42,11 @@ hr {
   margin-bottom: 20px
 }
 
+.new_game {
+  display: block;
+  font-size: 20px;
+}
+
+#game_index {
+  font-size: 25px;
+}
